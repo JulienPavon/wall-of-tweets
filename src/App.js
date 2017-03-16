@@ -21,9 +21,9 @@ class App extends Component {
           created_at: 'Fri Mar 10 20:20:43 +0000 2017',
           text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
           entities: {
-            media: { 
+            media: [{ 
               media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
-            },
+            }],
           },
           user: {
             name: "What's my mothaf*****g name ?",
@@ -49,11 +49,11 @@ class App extends Component {
   }
   
   render() {
-    let tweets = this.state.tweets.map(tweet => {
+    let tweets = this.state.tweets.map((tweet) => {
       if (tweet.entities.media && tweet.entities.media.length > 0) console.log(tweet.entities.media[0].media_url);
 
       let image = {
-        background: tweet.entities.media && tweet.entities.media.length > 0 ? `url(${tweet.entities.media[0].media_url}:small) center` : '#555'
+        background: tweet.entities.media && tweet.entities.media.length > 0 ? `url(${tweet.entities.media[0].media_url}:small) center` : ''
       };
 
       return <li key={tweet.id} className="tweet-item">

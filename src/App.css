@@ -6,7 +6,7 @@ body {
   text-align: center;
   line-height: 20px;
   padding: 2px;
-  color: white;
+  color: #ccc;
 }
 
 .App-content {
@@ -23,8 +23,15 @@ body {
   width: 25%;
   height: 230px;
   float: left;
-  color: white;
-  font-weight: 500;
+  color: #eee;
+  font-size: 1.05em;
+  font-weight: 300;
+}
+.tweet-item:nth-child(odd) .tweet-box {
+  background-color: #555;
+}
+.tweet-item:nth-child(even) .tweet-box {
+  background-color: #bbb;
 }
 
 .tweet-box {
