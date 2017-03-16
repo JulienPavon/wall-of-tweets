@@ -1,24 +1,50 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body {
+  background-color: #222;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  text-align: center;
+  line-height: 20px;
+  padding: 2px;
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.App-content {
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.tweets-collection {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tweet-item {
+  display: block;
+  width: 25%;
+  height: 230px;
+  float: left;
+  color: white;
+  font-weight: 500;
+}
+
+.tweet-box {
+  margin: 5px;
+}
+
+.tweet-content {
+  background-color: rgba(2, 2, 2, .4);
+  height: 170px;
+}
+
+.tweet-content-text {
+  padding: 40px;
+}
+
+.tweet-footer {
+  background-color: rgba(2, 2, 2, .4);
+  height: 50px;
+}
+
+.tweet-footer-text {
+  padding: 10px 40px;
 }
