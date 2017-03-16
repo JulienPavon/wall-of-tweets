@@ -18,13 +18,17 @@ class App extends Component {
       this.state.tweets.push(
         {
           id: i, 
+          created_at: 'Fri Mar 10 20:20:43 +0000 2017',
           text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
-          media: { 
-            media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg:small' 
+          entities: {
+            media: { 
+              media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
+            },
           },
           user: {
-            name: 'This is my name'
-
+            name: "What's my mothaf*****g name ?",
+            screen_name: '_snoopDogg',
+            profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
           }
 
         });
@@ -46,9 +50,10 @@ class App extends Component {
   
   render() {
     let tweets = this.state.tweets.map(tweet => {
-      let image = {
-        background: `url(${tweet.media.media_url}) center`
+      if (tweet.entities.media && tweet.entities.media.length > 0) console.log(tweet.entities.media[0].media_url);
 
+      let image = {
+        background: tweet.entities.media && tweet.entities.media.length > 0 ? `url(${tweet.entities.media[0].media_url}:small) center` : '#555'
       };
 
       return <li key={tweet.id} className="tweet-item">
@@ -57,7 +62,7 @@ class App extends Component {
             <div className="tweet-content-text">{tweet.text}</div>
           </div>
           <div className="tweet-footer">
-            <div className="tweet-footer-text">{tweet.user.name}</div>
+            <div className="tweet-footer-text">{tweet.user.name} (@{tweet.user.screen_name})</div>
           </div>
         </div>
       </li>;
