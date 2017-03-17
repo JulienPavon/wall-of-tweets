@@ -30,7 +30,7 @@ io.on('connection', function(client) {
     });
 });
 
-let stream = twit.stream('statuses/filter', {track: '#HackValtech'});
+let stream = twit.stream('statuses/filter', {track: '#StPatricksDay'});
 stream.on('tweet', function(tweet) {
     console.log('New tweet received --> emit it to all clients !');
     io.sockets.emit('newTweet', tweet);

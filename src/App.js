@@ -28,7 +28,7 @@ class App extends Component {
             profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
           }
       },
-      modalIsOpen: true
+      modalIsOpen: false
     };
 
     for (let i = 1; i <= 10; i++) {
@@ -54,10 +54,11 @@ class App extends Component {
 
     this.socket = io();
     this.socket.on('allTweets', function(tweets) {
-        self.setState({tweets: tweets.statuses});
-        console.log(tweets);
+      self.setState({tweets: tweets.statuses});
+      console.log(tweets);
     });
     this.socket.on('newTweet', function(tweet) {
+      if(!tweet.retweeted_status) {
         let tweets = self.state.tweets.slice();
         tweets.unshift(tweet);
 
@@ -67,12 +68,12 @@ class App extends Component {
 
         self.setState({tweets:tweets});
         console.log(tweet);
+      }
     });
   }
 
   showTweet(id) {
-    this.setState({modalIsOpen: true});
-    /*
+    //this.setState({modalIsOpen: true});
     console.log(`Show tweet with id '${id}'`);
 
     let self = this;
@@ -83,7 +84,6 @@ class App extends Component {
       console.log(tweet);
       self.setState({tweetDetails: tweet, modalIsOpen: true});
     });
-    */
   }
 
   closeModal() {
@@ -114,10 +114,10 @@ class App extends Component {
       },
       content : {
         position: 'absolute',
-        top: '50px',
-        left: '50px',
-        right: '50px',
-        bottom: '50px',
+        top: '60px',
+        left: '60px',
+        right: '60px',
+        bottom: '60px',
         padding: '0',
         overflow: 'hidden',
         border: '1px solid #666',
