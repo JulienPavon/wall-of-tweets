@@ -53,6 +53,9 @@ body {
   height: 50px;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 .tweet-footer-text {
   padding: 10px 40px;
 }
