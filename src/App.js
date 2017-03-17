@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import Modal from 'react-modal';
 import io from 'socket.io-client';
+import renderHTML from 'react-render-html';
 
 class App extends Component {
   constructor() {
@@ -59,17 +60,20 @@ class App extends Component {
     });
     this.socket.on('newTweet', function(tweet) {
       if(!tweet.retweeted_status) {
-        let tweets = self.state.tweets.slice();
-        tweets.unshift(tweet);
-
-        if (tweets.length > 30) {
-          tweets.pop();
-        }
-
-        self.setState({tweets:tweets});
-        console.log(tweet);
+        self.addTweet(tweet);
       }
     });
+  }
+
+  addTweet(tweet) {
+    let tweets = self.state.tweets.slice();
+    tweets.unshift(tweet);
+
+    if (tweets.length > 30) {
+      tweets.pop();
+    }
+
+    self.setState({tweets:tweets});
   }
 
   showTweet(id) {
@@ -99,7 +103,7 @@ class App extends Component {
       return <li onClick={this.showTweet.bind(this, tweet.id_str)} key={tweet.id_str} className="tweet-item">
         <div className="tweet-box" style={image}>
           <div  className="tweet-content">
-            <div className="tweet-content-text">{tweet.text}</div>
+            <div className="tweet-content-text">{renderHTML(tweet.text)}</div>
           </div>
           <div className="tweet-footer">
             <div className="tweet-footer-text">{tweet.user.name} (@{tweet.user.screen_name})</div>
@@ -151,7 +155,7 @@ class App extends Component {
               <div className="tweet-details-content">
                 <div className="tweet-details-content-user_name">{this.state.tweetDetails.user.name}</div>
                 <div className="tweet-details-content-screen_name">(@{this.state.tweetDetails.user.screen_name})</div>
-                <div className="tweet-details-content-text">{this.state.tweetDetails.text}</div>
+                <div className="tweet-details-content-text">{renderHTML(this.state.tweetDetails.text)}</div>
               </div>
               <div className="tweet-details-image" style={tweetDetailsImageStyle}>
               </div>
