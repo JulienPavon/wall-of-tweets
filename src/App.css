@@ -73,7 +73,7 @@ body {
   float: right;
   width: 70%;
   height: 100%;
-  background-image: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27497794%2F95364979455%2F1%2Foriginal.jpg?w=1000&rect=0%2C0%2C2160%2C1080&s=65e92a54aeecfaf6b385afa638cbaec6');
+  background: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27497794%2F95364979455%2F1%2Foriginal.jpg?w=1000&rect=0%2C0%2C2160%2C1080&s=65e92a54aeecfaf6b385afa638cbaec6') no-repeat center;
   background-size: 100%;
 }
 .tweet-details-content {

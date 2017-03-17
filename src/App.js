@@ -14,51 +14,57 @@ class App extends Component {
     this.state = {
       tweets: [],
       tweetDetails: {
-          // id_str: "839900050331426818", 
-          // created_at: 'Fri Mar 10 20:20:43 +0000 2017',
-          // text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
-          // entities: {
-          //   // media: [{ 
-          //   //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
-          //   // }],
-          // },
-          // user: {
-          //   name: "What's my mothaf*****g name ?",
-          //   screen_name: '_snoopDogg',
-          //   profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
-          // }
+          id_str: "839900050331426818", 
+          created_at: 'Fri Mar 10 20:20:43 +0000 2017',
+          text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
+          entities: {
+            // media: [{ 
+            //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
+            // }],
+          },
+          user: {
+            name: "What's my mothaf*****g name ?",
+            screen_name: '_snoopDogg',
+            profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
+          }
       },
       modalIsOpen: false
     };
 
-    // for (let i = 1; i <= 10; i++) {
-    //   this.state.tweets.push(
-    //     {
-    //       id_str: i, 
-    //       created_at: 'Fri Mar 10 20:20:43 +0000 2017',
-    //       text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
-    //       entities: {
-    //         // media: [{ 
-    //         //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
-    //         // }],
-    //       },
-    //       user: {
-    //         name: "What's my mothaf*****g name ?",
-    //         screen_name: '_snoopDogg',
-    //         profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
-    //       }
+    for (let i = 1; i <= 10; i++) {
+      this.state.tweets.push(
+        {
+          id_str: i, 
+          created_at: 'Fri Mar 10 20:20:43 +0000 2017',
+          text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
+          entities: {
+            // media: [{ 
+            //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
+            // }],
+          },
+          user: {
+            name: "What's my mothaf*****g name ?",
+            screen_name: '_snoopDogg',
+            profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
+          }
 
-    //     });
-    // }
+        });
+    }
+
 
     this.socket = io();
     this.socket.on('allTweets', function(tweets) {
-        self.setState({tweets: tweets.statuses.reverse()});
+        self.setState({tweets: tweets.statuses});
         console.log(tweets);
     });
     this.socket.on('newTweet', function(tweet) {
         let tweets = self.state.tweets.slice();
         tweets.unshift(tweet);
+
+        if (tweets.length > 30) {
+          tweets.pop();
+        }
+
         self.setState({tweets:tweets});
         console.log(tweet);
     });
