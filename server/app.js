@@ -22,12 +22,18 @@ twit.get('search/tweets', { q: '#HackValtech' }, function(err, data, response) {
 io.on('connection', function(client) {  
     console.log('Client connected...');
     client.emit('allTweets', allTweets);
-});
 
-let stream = twit.stream('statuses/filter', {track: '#HackingParis2024'});
-stream.on('tweet', function(tweet) {
-    console.log('New tweet received --> emit it to all clients !');
-    io.sockets.emit('newTweet', tweet);
+    let stream = twit.stream('statuses/filter', {track: '#HackingParis2024'});
+    stream.on('tweet', function(tweet) {
+        console.log('New tweet received --> emit it to all clients !');
+        client.emit('newTweet', tweet);
+    });
+
+    client.on('getTweetDetails', function(id) {
+        twit.get('statuses/show', { id: id.toString() }, function(err, data, response) {
+            client.emit('tweetDetails', data);
+        });
+    });
 });
 
 // // Setup logger

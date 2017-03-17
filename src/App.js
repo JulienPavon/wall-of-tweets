@@ -17,7 +17,7 @@ class App extends Component {
     for (let i = 1; i <= 10; i++) {
       this.state.tweets.push(
         {
-          id: i, 
+          id_str: i, 
           created_at: 'Fri Mar 10 20:20:43 +0000 2017',
           text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
           entities: {
@@ -35,30 +35,41 @@ class App extends Component {
     }
 
 
-    let socket = io();
-    socket.on('allTweets', function(tweets) {
+    this.socket = io();
+    this.socket.on('allTweets', function(tweets) {
         self.setState({tweets: tweets.statuses.reverse()});
         console.log(tweets);
     });
-    socket.on('newTweet', function(tweet) {
+    this.socket.on('newTweet', function(tweet) {
         let tweets = self.state.tweets.slice();
         tweets.unshift(tweet);
         self.setState({tweets:tweets});
         console.log(tweet);
     });
   }
+
+  showTweet(id) {
+    console.log(`Show tweet with id '${id}'`);
+
+    let self = this;
+
+    this.socket.emit('getTweetDetails', id);
+    this.socket.on('tweetDetails', function(tweet) {
+      console.log('Get tweet details : ');
+      console.log(tweet);
+      self.setState({tweetDetails: tweet});
+    });
+  }
   
   render() {
     let tweets = this.state.tweets.map((tweet) => {
-      if (tweet.entities.media && tweet.entities.media.length > 0) console.log(tweet.entities.media[0].media_url);
-
       let image = {
         background: tweet.entities.media && tweet.entities.media.length > 0 ? `url(${tweet.entities.media[0].media_url}:small) center` : ''
       };
 
-      return <li key={tweet.id} className="tweet-item">
+      return <li onClick={this.showTweet.bind(this, tweet.id_str)} key={tweet.id_str} className="tweet-item">
         <div className="tweet-box" style={image}>
-          <div className="tweet-content">
+          <div  className="tweet-content">
             <div className="tweet-content-text">{tweet.text}</div>
           </div>
           <div className="tweet-footer">
@@ -70,7 +81,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>#HackValtech</h2>
+          <h1>#HackValtech</h1>
         </div>
         
         <div className="App-content">
