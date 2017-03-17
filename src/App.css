@@ -58,34 +58,44 @@ body {
 }
 
 .close-modal-button {
+  position: absolute;
+  right: 0;
   background: none;
   border: none;
-  font-size: 1.5em;
-  float: right;
+  font-size: 1.8em;
   outline: none;
+  margin: 5px;
 }
 
 .tweet-details-box {
-  height: 97%;
+  height: 100%;
 }
 
 .tweet-details-image {
-  float: right;
-  width: 70%;
+  width: 67%;
   height: 100%;
-  background: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27497794%2F95364979455%2F1%2Foriginal.jpg?w=1000&rect=0%2C0%2C2160%2C1080&s=65e92a54aeecfaf6b385afa638cbaec6') no-repeat center;
+  background-image: url('https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F27497794%2F95364979455%2F1%2Foriginal.jpg?w=1000&rect=0%2C0%2C2160%2C1080&s=65e92a54aeecfaf6b385afa638cbaec6');
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: 100%;
 }
 .tweet-details-content {
-  width: 28%;
-  padding-top: 30px;
-  padding-left: 30px;
+  float: right;
+  width: 30%;
+  margin-top: 50px;
+  margin-right: 10px;
 }
 
-.tweet-details-content-user {
-    margin-bottom: 30px;
+.tweet-details-content-user_name {
+  font-size: 1.5em;
+}
+.tweet-details-content-screen_name {
+  font-size: 1.2em;
 }
 
 .tweet-details-content-text {
-    font-size: 2em;
+  margin-top: 30px;
+  font-size: 2.5em;
+  line-height: 1.5em;
 }

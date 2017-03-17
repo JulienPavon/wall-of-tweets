@@ -18,9 +18,9 @@ class App extends Component {
           created_at: 'Fri Mar 10 20:20:43 +0000 2017',
           text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
           entities: {
-            // media: [{ 
-            //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
-            // }],
+            media: [{ 
+              media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
+            }],
           },
           user: {
             name: "What's my mothaf*****g name ?",
@@ -28,7 +28,7 @@ class App extends Component {
             profile_image_url: "http://pbs.twimg.com/profile_images/840613476414435329/33DmyxUe_normal.jpg"
           }
       },
-      modalIsOpen: false
+      modalIsOpen: true
     };
 
     for (let i = 1; i <= 10; i++) {
@@ -38,9 +38,9 @@ class App extends Component {
           created_at: 'Fri Mar 10 20:20:43 +0000 2017',
           text: 'RT @arnaudhacquin: rvfrance: RT rBrillet: Foncez ! #HackValtech #Hackaton #VR #Reality cc Valtech_FR https://t.co/llBBxxbG8h', 
           entities: {
-            // media: [{ 
-            //   media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
-            // }],
+            media: [{ 
+              media_url: 'https://pbs.twimg.com/media/Ck6kfxWXIAA9P6t.jpg' 
+            }],
           },
           user: {
             name: "What's my mothaf*****g name ?",
@@ -71,7 +71,8 @@ class App extends Component {
   }
 
   showTweet(id) {
-    //this.setState({modalIsOpen: true});
+    this.setState({modalIsOpen: true});
+    /*
     console.log(`Show tweet with id '${id}'`);
 
     let self = this;
@@ -82,6 +83,7 @@ class App extends Component {
       console.log(tweet);
       self.setState({tweetDetails: tweet, modalIsOpen: true});
     });
+    */
   }
 
   closeModal() {
@@ -111,10 +113,22 @@ class App extends Component {
         backgroundColor: 'rgba(2, 2, 2, 0.4)'
       },
       content : {
-        padding: '30px 10px',
-        overflow: 'hidden'
+        position: 'absolute',
+        top: '50px',
+        left: '50px',
+        right: '50px',
+        bottom: '50px',
+        padding: '0',
+        overflow: 'hidden',
+        border: '1px solid #666',
+        borderRadius: 0
       }
     };
+
+    let tweetDetailsImageStyle = {};
+    if (this.state.tweetDetails.entities.media && this.state.tweetDetails.entities.media.length > 0) {
+      tweetDetailsImageStyle.backgroundImage = `url(${this.state.tweetDetails.entities.media[0].media_url}:large)`;
+    }
 
     return (
       <div className="App">
@@ -134,11 +148,12 @@ class App extends Component {
 
             <button className="close-modal-button" onClick={this.closeModal.bind(this)}>X</button>
             <div className="tweet-details-box">
-              <div className="tweet-details-image" style={{background: this.state.tweetDetails.entities.media && this.state.tweetDetails.entities.media.length > 0 ? `url(${this.state.tweetDetails.entities.media[0].media_url}:medium) no-repeat center` : ''}}>
-              </div>
               <div className="tweet-details-content">
-                <div className="tweet-details-content-user">{this.state.tweetDetails.user.name} @({this.state.tweetDetails.user.screen_name})</div>
+                <div className="tweet-details-content-user_name">{this.state.tweetDetails.user.name}</div>
+                <div className="tweet-details-content-screen_name">(@{this.state.tweetDetails.user.screen_name})</div>
                 <div className="tweet-details-content-text">{this.state.tweetDetails.text}</div>
+              </div>
+              <div className="tweet-details-image" style={tweetDetailsImageStyle}>
               </div>
             </div>
           </Modal>
