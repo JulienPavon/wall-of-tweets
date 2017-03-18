@@ -60,20 +60,16 @@ class App extends Component {
     });
     this.socket.on('newTweet', function(tweet) {
       if(!tweet.retweeted_status) {
-        self.addTweet(tweet);
+        let tweets = self.state.tweets.slice();
+        tweets.unshift(tweet);
+
+        if (tweets.length > 30) {
+          tweets.pop();
+        }
+
+        self.setState({tweets:tweets});
       }
     });
-  }
-
-  addTweet(tweet) {
-    let tweets = self.state.tweets.slice();
-    tweets.unshift(tweet);
-
-    if (tweets.length > 30) {
-      tweets.pop();
-    }
-
-    self.setState({tweets:tweets});
   }
 
   showTweet(id) {
