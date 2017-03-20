@@ -1,0 +1,65 @@
+.tweets-collection {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tweet-item {
+  display: block;
+  width: 20%;
+  height: 230px;
+  float: left;
+  color: #eee;
+  font-size: 1.05em;
+  font-weight: 100;
+}
+.tweet-item:nth-child(odd) .tweet-box {
+  background-color: #999;
+}
+.tweet-item:nth-child(even) .tweet-box {
+  background-color: #00bdfa;
+}
+
+.close-modal-button {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  outline: none;
+  margin: 5px;
+}
+
+
+.tweet-details-box {
+  height: 100%;
+}
+
+.tweet-details-image {
+  width: 67%;
+  height: 100%;
+  background-image: url('http://hackathon.valtech.fr/images/hackathon_visuel_web_2160x1080.jpg');
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.tweet-details-content {
+  float: right;
+  width: 30%;
+  margin-top: 50px;
+  margin-right: 10px;
+}
+
+.tweet-details-content-user_name {
+  font-size: 1.5em;
+}
+.tweet-details-content-screen_name {
+  font-size: 1.2em;
+}
+
+.tweet-details-content-text {
+  margin-top: 30px;
+  font-size: 2.5em;
+  line-height: 1.5em;
+}

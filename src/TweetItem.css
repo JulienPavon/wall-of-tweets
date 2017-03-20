@@ -1,0 +1,22 @@
+.tweet-box {
+  margin: 5px;
+}
+
+.tweet-content {
+  background-color: rgba(2, 2, 2, .7);
+  height: 170px;
+}
+
+.tweet-content-text {
+  padding: 40px;
+}
+
+.tweet-footer {
+  font-size: 0.8em;
+  background-color: rgba(2, 2, 2, .7);
+  height: 50px;
+}
+
+.tweet-footer-text {
+  padding: 10px 40px;
+}
