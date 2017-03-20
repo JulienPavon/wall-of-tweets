@@ -1,17 +1,6 @@
-body {
-  background-color: #1a1a1a;
-}
-
 .App-header {
   text-align: center;
   line-height: 20px;
   padding: 2px;
   color: #ccc;
-}
-
-.App-content {
-}
-
-::-webkit-scrollbar {
-  display: none;
 }

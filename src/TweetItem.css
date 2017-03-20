@@ -4,6 +4,8 @@
 
 .tweet-content {
   background-color: rgba(2, 2, 2, .7);
+  background-position: center;
+  background-repeat: no-repeat;
   height: 170px;
 }
 

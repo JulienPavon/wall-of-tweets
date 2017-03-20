@@ -18,9 +18,9 @@ class TweetsCollection extends Component {
     };
 
     this.socket = io();
-    this.socket.on('allTweets', function(tweets) {
-      self.setState({tweets: tweets.statuses});
-      console.log(tweets);
+    this.socket.on('allTweets', function(data) {
+      self.setState({tweets: data.statuses});
+      console.log(data);
     });
     this.socket.on('newTweet', function(tweet) {
       if (!tweet.retweeted_status) {
