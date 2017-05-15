@@ -8,10 +8,10 @@ const io = require('socket.io')(server);
 const Twit = require('twit');
 
 let twit = new Twit({
-    consumer_key: 'xf1XsBeVDlGPm1O2LLitYSSL9',
-    consumer_secret: 'c9pMzwYg6LiGESxoLbpk96CdVALFpAcW9BnGA9CTdgBGQzOo06',
-    access_token: '1433079044-XRvWjicZlvB4xCHKva4EdA4EDF46eVT4aUNfXxF',
-    access_token_secret: 'YfHYiUL5gi2IwY57UoSRD02SYIuKli1H7tdpViATA0UkD'
+    consumer_key: 'xxxxxxxxxxxxxxxxxxx',
+    consumer_secret: 'xxxxxxxxxxxxxxxxxxx',
+    access_token: 'xxxxxxxxxxxxxxxxxxx',
+    access_token_secret: 'xxxxxxxxxxxxxxxxxxx'
 });
 
 let allTweets = [];
